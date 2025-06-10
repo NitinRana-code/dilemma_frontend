@@ -1,6 +1,6 @@
 // App.jsx
 import React, { useState } from "react";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 import ABSelector from "./ABSelector";
 import ChatSection from "./ChatSection";
 import "./App.css";
