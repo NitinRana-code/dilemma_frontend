@@ -10,7 +10,7 @@ export default function ChatSection({ questionId }) {
   useEffect(() => {
     if (questionId) {
       axios
-        .get(`${backend_url}/api/chat/${questionId}`)
+        .get(`/api/chat/${questionId}`)
         .then((res) => {
           const data = Array.isArray(res.data) ? res.data : [];
           setMessages(data);
@@ -25,7 +25,7 @@ export default function ChatSection({ questionId }) {
   const handleSend = async () => {
     if (!input.trim()) return;
     try {
-      const res = await axios.post(`${backend_url}/api/chat`, {
+      const res = await axios.post(`/api/chat`, {
         questionId,
         text: input,
       });
@@ -38,7 +38,7 @@ export default function ChatSection({ questionId }) {
 
   const handleLike = async (id) => {
     try {
-      const res = await axios.post(`${backend_url}/api/chat/like`, { messageId: id });
+      const res = await axios.post(`/api/chat/like`, { messageId: id });
       setMessages((prev) => prev.map((m) => (m.id === id ? res.data : m)));
     } catch (err) {
       console.error("Error liking message", err);
@@ -47,7 +47,7 @@ export default function ChatSection({ questionId }) {
 
   const handleReply = async (id, replyText) => {
     try {
-      const res = await axios.post(`${backend_url}/api/chat/reply`, {
+      const res = await axios.post(`/api/chat/reply`, {
         messageId: id,
         replyText,
       });
